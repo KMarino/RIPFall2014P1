@@ -1,0 +1,57 @@
+(:worldstate (hanoi)
+    (disc           (int))
+    (loc            (int))
+    (startloc       (int))
+    (endloc         (int))
+    (clearloc       (int))
+    (clear          (int))
+    (top            (int))
+    (on_table       (int))
+    (on_other       (int))
+    (at             (int) (int))
+    (on             (int) (int))
+)
+
+(:domain (hanoi)
+    (:operator (!move_single_to_clear_op move-disc xo xf)
+        (:add (clear xo) (at move-disc xf))
+        (:delete (clear xf) (at move-disc xo))
+    )
+
+    (:operator (!move_top_to_clear_op move-disc disc-below xo xf)
+        (:add (top disc-below) (at move-disc xf) (on_table move-disc))
+        (:delete (clear xf) (at move-disc xo) (on_other move-disc) (on move-disc disc-below))
+    )
+
+    (:operator (!move_single_to_top_op move-disc disc-other xo xf)
+        (:add (clear xo) (at move-disc xf) (on_other move-disc) (on move-disc disc-other))
+        (:delete (top disc-other) (at move-disc xo) (on_table move-disc))
+    )
+
+    (:operator (!move_top_to_top_op move-disc disc-below disc-other xo xf)
+        (:add (top disc-below) (at move-disc xo) (on move-disc disc-other))
+        (:delete (top disc-other) (at move-disc xo) (on move-disc disc-below))
+    )
+
+    (:method (root)
+        ((startloc A) (endloc C) (clearloc B) (on_table bttm-disc))
+        ((Move_Stack bttm-disc A C B))
+    )
+
+    (:method (Move_Stack bttm-disc xo xf xs)
+        ((disc bttm-disc) (disc second-bttm) (loc xo) (loc xf) (loc xs) (at bttm-disc xo) (on second-bttm bttm-disc) (at bttm-disc xo))
+        ((Move_Stack second-bttm xo xs xf) (Move-Stack bttm-disc xo xf xs) (Move-Stack second-bttm xs xf xo))
+
+        ((disc bttm-disc) (loc xo) (loc xf) (loc xs) (at bttm-disc xo) (top bttm-disc) (on_table bttm-disc) (clear xf))
+        ((!move_single_to_clear_op bttm-disc xo xf))
+
+        ((disc bttm-disc) (loc xo) (loc xf) (loc xs) (at bttm-disc xo) (top bttm-disc) (on second-bttm bttm-disc) (clear xf))
+        ((!move_top_to_clear_op bttm-disc second-bttm xo xf))
+
+        ((disc bttm-disc) (loc xo) (loc xf) (loc xs) (at bttm-disc xo) (top bttm-disc) (on_table bttm-disc) (on_other disc-other))
+        ((!move_single_to_top_op bttm-disc disc-other xo xf))
+
+        ((disc bttm-disc) (loc xo) (loc xf) (loc xs) (at bttm-disc xo) (top bttm-disc) (on second-bttm bttm-disc) (on_other other-disc))
+        ((!move_top_to_top_op bttm-disc second-bttm other-disc xo xf))
+    )
+)
