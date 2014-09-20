@@ -6,6 +6,8 @@
 #include <derplanner/runtime/interface.h>
 #include <derplanner/runtime/world_printf.h>
 #include "hanoi.h"
+#include <stdlib.h>
+#include <time.h>
 
 using namespace plnnr;
 using namespace hanoi;
@@ -79,6 +81,8 @@ int main()
     pstate.journal = &jstack;
     pstate.trace = &trace;
 
+
+    clock_t start = clock();
     find_plan_init(pstate, hanoi::task_root, hanoi::root_branch_0_expand);
 
     Find_Plan_Status status = plan_in_progress;
@@ -100,6 +104,12 @@ int main()
     {
         printf("plan not found.\n");
     }
+    clock_t end = clock();
+
+    unsigned long micros = end - start;
+    double millis = micros / 1000;
+
+    cout << "Elapsed Time: " << millis << " ms" << endl;
 
     return 0;
 }

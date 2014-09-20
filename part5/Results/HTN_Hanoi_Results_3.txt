@@ -1,0 +1,22 @@
+(disc (0) (1) (2))
+(loc (0) (1) (2))
+(startloc (0))
+(endloc (2))
+(clearloc (1))
+(clear (1) (2))
+(top (2))
+(on_table (0))
+(on_other (1) (2))
+(at (0, 0) (1, 0) (2, 0))
+(on (1, 0) (2, 1))
+
+plan found:
+
+(!move_top_to_clear_op (2, 1, 0, 2))
+(!move_top_to_clear_op (1, 0, 0, 1))
+(!move_single_to_top_op (2, 1, 2, 1))
+(!move_single_to_clear_op (0, 0, 2))
+(!move_top_to_clear_op (2, 1, 1, 0))
+(!move_single_to_top_op (1, 0, 1, 2))
+(!move_single_to_top_op (2, 1, 0, 2))
+Elapsed Time: 0 ms
