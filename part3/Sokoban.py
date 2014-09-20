@@ -20,11 +20,9 @@ class Robot:
 		self.print_robot_info()
 		print 
 		box.print_box_info()
+        #if the robot is on the left side of the box
 		if self.row == box.row and self.col == box.col - 1:
-			# print "right case"
-			# print "check this out for right case", sokoban_problem.isAccessible(self.row, box.col + 1)
 			if sokoban_problem.isAccessible(self.row, box.col + 1):
-				# print "right case inner"
 				sokoban_problem.world_map[self.row * sokoban_problem.number_of_columns + box.col] = 'E'
 				sokoban_problem.world_map[self.row * sokoban_problem.number_of_columns + box.col + 1] = 'B'
 				return True
@@ -36,14 +34,12 @@ class Robot:
 				return True
     	#if the robot is on the top of the box
 		if self.row == box.row -1 and self.col == box.col:
-			# print "yoyo"
 			if sokoban_problem.isAccessible(self.row + 1, self.col):
 				sokoban_problem.world_map[box.row * sokoban_problem.number_of_columns + box.col] = 'E'
 				sokoban_problem.world_map[(box.row + 1) * sokoban_problem.number_of_columns + box.col] = 'B'
 				return True
 		#if the robot is on the bottom of the box
 		if self.row == box.row + 1 and self.col == box.col:
-			# print "yayyyyy"
 			if sokoban_problem.isAccessible(box.row - 1, self.col):
 				sokoban_problem.world_map[box.row * sokoban_problem.number_of_columns + box.col] = 'E'
 				sokoban_problem.world_map[(box.row - 1) * sokoban_problem.number_of_columns + box.col] = 'B'
@@ -73,25 +69,13 @@ class Sokoban:
     		self.number_of_boxes = int(temp[0].split(',')[2])
     		
     		for t in temp[1:]:
-    			print "here is the value of t", t, " and its length is " , len(t)
     			for c in t.strip().split(','):
-    				self.world_map.append(c)
-    				print "here are the values of C" , c
-
-
-    			# self.world_map.append(t.strip().split(','))
-    		print "ONLY SEE THIS"	
-    		self.print_world_map()     			
-    		# self.world_map = str(temp[0].strip()).split(',')	    		
+    				self.world_map.append(c)	     				    		
     	self.boxes = []
     	self.robot = []
     	self.box_robot_finder()
-    	
-    	# print contents
-    	# print type(contents)
 
     def print_world_map(self):
-    	# print "type", type(self.world_map)
     	count = 0;
     	output = []
     	for i in self.world_map:
@@ -112,21 +96,12 @@ class Sokoban:
 
     
     def isAccessible(self, row, col):
-    	# print "row being checked", row
-    	# print "col being checcked", col
+    	# checking index out of bounds
     	if row >= self.number_of_rows or row < 0:
     		return False
     	if col >= self.number_of_columns or col < 0:
     		return False	
-    	# print self.world_map[int(row) * int(self.number_of_columns) + int(col)]
     	return self.world_map[int(row) * int(self.number_of_columns) + int(col)] != 'W'
-    	
-
-
-
-
-    # def isAccessible(self, row, col):
-    	# self.world_map[row *  ]
 
 file_number = raw_input("enter file number : ")
 sokoban_problem = Sokoban(1, file_number)	
