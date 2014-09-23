@@ -1,6 +1,6 @@
 (define (problem hanoi-12)
   (:domain hanoi-domain)
-  (:objects p1 p2 p3 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 d12 )
+  (:objects p1 p2 p3 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 d12)
   (:init 
     (smaller d1 p1)(smaller d1 p2)(smaller d1 p3)
     (smaller d2 p1)(smaller d2 p2)(smaller d2 p3)
@@ -26,7 +26,7 @@
     (smaller d9 d10)(smaller d9 d11)(smaller d9 d12)
     (smaller d10 d11)(smaller d10 d12)
     (smaller d11 d12)
-    
+
     (clear p1)(clear p2)(clear d1)
     (disk d1)(disk d2)(disk d3)(disk d4)(disk d5)(disk d6)(disk d7)(disk d8)(disk d9)(disk d10)(disk d11)(disk d12)
     (on d1 d2)(on d2 d3)(on d3 d4)(on d4 d5)(on d5 d6)(on d6 d7)(on d7 d8)(on d8 d9)(on d9 d10)(on d10 d11)(on d11 d12)(on d12 p3)
