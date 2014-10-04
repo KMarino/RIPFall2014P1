@@ -155,7 +155,7 @@ while not stateQ.empty():
                 #print "x: ", str(x+addX), "  y: ", str(y+addY);
                 #print "Box x: ", str(bx+addX), "  Box y: ", str(by+addY), "\n";
                 stateQ.put((getPriorty(newState),newState));
-print "Found: ", str(found);
+
         
 if not found:
     print "Could not find Goal State in Time: ", str(time()-startTime ), " Seconds";
