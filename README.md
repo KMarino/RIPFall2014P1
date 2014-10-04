@@ -3,6 +3,14 @@ RIPFall2014P1
 
 Repository for Homework 1 for CS 4649/7649
 
+How to run.
+
+Parts
+---------------
+Each of the five parts of the problem has their own subdirectory. Look at the README files in each of those to see how to run each of those projects.
+
+32-bit planners
+---------------
 Blackbox and ff planners are stored in the planners directory. They are 32-bit linux executables, do not work on 64 bit machines.
 
 The usage is something like this
